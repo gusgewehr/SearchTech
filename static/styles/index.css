@@ -17,7 +17,7 @@
 	vertical-align: top;
 	margin: 10px;
 	font-family: 'helvetica', san-serif;
-
+	min-height: 200px;
 	background: #262a2b;
 	border: 1px solid #252727;
 	text-align: left;

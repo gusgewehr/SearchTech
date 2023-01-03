@@ -1,6 +1,7 @@
 from functools import lru_cache
 from math import ceil
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from datetime import date
 import requests
 
@@ -19,6 +20,16 @@ def get_specific_project(id, month):
     response = requests.get(url)
     resp_dict = response.json()
     return resp_dict['projects']
+
+@lru_cache()
+def get_datailed_project(id, month):
+    url = 'https://techport.nasa.gov/api/projects/117152&api_key=jEsssS4hRlXHUKj6uLRArcZG2LOITXr8YKWc00e6'
+    response = requests.get(url)
+    #print(response.headers['X-RateLimit-Remaining'])
+    resp_dict = response.json()
+    return resp_dict['project']
+
+
 
 
 def index(request, num_page = 1):
@@ -46,3 +57,21 @@ def index(request, num_page = 1):
         'index.html',
         context 
         )
+
+
+@login_required()
+def detailed_content(request, id):
+
+
+    project = get_datailed_project(id, date.today().month)
+
+
+    context = {
+        'project': project
+        }
+
+    return (
+        request,
+        'detailed.html',
+        context
+    )
