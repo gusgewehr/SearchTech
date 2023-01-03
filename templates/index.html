@@ -1,33 +1,29 @@
-{% load static %}
-<html>
-    <head>
-		<link rel="stylesheet" href="{% static 'styles/index.css' %}">
-		<script src="https://kit.fontawesome.com/8e543a0707.js" crossorigin="anonymous"></script>
-	</head>
-	<body>
-		<ul class="tilesWrap">
-			{% for ctd in contents %}
+{% extends 'header.html' %}
+{% block content %}
 
-				<li>
-					<h2>{{ctd.projectId}}</h2>
-					<h3>{{ctd.title}}</h3>
-					<button>Read more</button>
-				</li>
-
-			{% endfor %}
-		</ul>
-		<footer>
-			{% if num_page != 1 %}
-			<a href="/{{prev_page}}">			
-				<i class="fa-solid fa-circle-arrow-left"></i>
-			</a>
-			{% endif %}
-			Página {{num_page}} de {{total_pages}}
-			{% if num_page != total_pages %}
-			<a href="/{{next_page}}">
-				<i class="fa-solid fa-circle-arrow-right"></i>
-			</a>
-			{% endif %}
-		</footer>
-	</body>
-</html>
+<ul class="tilesWrap">
+	{% for ctd in contents %}
+		<a href="/projects/{{ctd.projectId}}">	
+			<li>
+				<h2>{{ctd.projectId}}</h2>
+				<h3>{{ctd.title}}</h3>
+				<button>Read more</button>
+			</li>
+		</a>
+			
+	{% endfor %}
+</ul>
+<footer>
+	{% if num_page != 1 %}
+	<a href="/{{prev_page}}">			
+		<i class="fa-solid fa-circle-arrow-left navigation-arrows"></i>
+	</a>
+	{% endif %}
+	Página {{num_page}} de {{total_pages}}
+	{% if num_page != total_pages %}
+	<a href="/{{next_page}}">
+		<i class="fa-solid fa-circle-arrow-right navigation-arrows"></i>
+	</a>
+	{% endif %}
+</footer>
+{% endblock %}
