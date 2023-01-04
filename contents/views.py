@@ -1,6 +1,7 @@
 from functools import lru_cache
 from math import ceil
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from datetime import date
 import requests
@@ -27,9 +28,20 @@ def get_datailed_project(id, month):
     response = requests.get(url)
     #print(response.headers['X-RateLimit-Remaining'])
     resp_dict = response.json()
-    return resp_dict
+    return resp_dict['project']
 
 
+def login(request):
+    ''' Recebe as solicitações de login, se não tiver autenticado retorna com a tela de login'''
+    if request.user.is_authenticated:
+        redirect('/')
+    else:
+        return render(request, 'login.html')
+
+def logout_view(request):
+    ''' Recebe as solicitações de logout, redireciona pro endereço raiz.'''
+    logout(request)
+    return redirect('/')
 
 
 def index(request, num_page = 1):
