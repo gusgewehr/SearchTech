@@ -23,11 +23,11 @@ def get_specific_project(id, month):
 
 @lru_cache()
 def get_datailed_project(id, month):
-    url = 'https://techport.nasa.gov/api/projects/117152&api_key=jEsssS4hRlXHUKj6uLRArcZG2LOITXr8YKWc00e6'
+    url = f'https://techport.nasa.gov/api/projects/{id}?api_key=jEsssS4hRlXHUKj6uLRArcZG2LOITXr8YKWc00e6'
     response = requests.get(url)
     #print(response.headers['X-RateLimit-Remaining'])
     resp_dict = response.json()
-    return resp_dict['project']
+    return resp_dict
 
 
 
@@ -67,11 +67,11 @@ def detailed_content(request, id):
 
 
     context = {
-        'project': project
+        'project': project,
         }
 
-    return (
+    return render(
         request,
-        'detailed.html',
+        'datailed.html',
         context
     )
