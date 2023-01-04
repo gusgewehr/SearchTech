@@ -4,11 +4,74 @@
 
     <div class="project_title">
         <h3>{{project.title}}</h3>
+        <div class="actions">
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-thumbs-up"></i>
+            <i class="fa-solid fa-share"></i>
+        </div>
     </div>
 
     <div class="description">
         <h3>Abstract</h3>
         {{project.description|safe}}
     </div>
-        
+    <div class="text">
+        <h3>Benefits</h3>
+        {{project.benefits|safe}}
+    </div>
+    
+<div class="text">
+    <a href="{{project.website}}">
+        {{project.website}}
+    </a>
+    <p>
+        status: {{project.statusDescription}}
+    </p>
+    <lu>
+        <h3>Destination</h3>
+        {% for destination in project.destinations %}
+        <li>
+            {{destination.description}}
+        </li>
+        {% endfor %}
+    </lu>
+
+    <lu>
+        <li>
+            start: {{project.startMonth}}/{{project.startYear}}
+        </li>
+        <li>
+            end: {{project.endMonth}}/{{project.endYear}}
+        </li>
+    </lu>
+    <lu>
+        <h3>Program Managers</h3>
+        {% for person in project.programManagers %}
+        <li>
+            {{person.fullName}}
+        </li>
+        {% endfor %}
+    </lu>
+    <lu>
+        <h3>Project Managers</h3>
+        {% for person in project.projectManagers %}
+        <li>
+            {{person.fullName}}
+        </li>
+        {% endfor %}
+    </lu>
+    <p>
+        last updated: {{project.lastUpdated}}
+    </p>
+</div>
+
+<div class="comment_section">
+    <button class="add_comment"><i class="fa-solid fa-comment-medical"></i></button>
+    {% if comments %}
+
+    {% else %}
+    No comments yet
+    {% endif %}
+</div>
+
 {% endblock %}
