@@ -22,7 +22,7 @@ header {
 	position: fixed;
 	width: 100%;
 	height: var(--heading-height);
-    z-index: 1;
+    z-index: 0;
 }
 
 /* Create angled background with 'before' pseudo-element */
@@ -69,6 +69,63 @@ main {
 	flex-direction: column;
 	align-items: center;
 	gap: 60px;
+}
+
+#modal{
+	display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1a1a1ae8;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#modal>.info_container{
+	display: flex;
+	min-height: 30vh;
+	width: 30vw;
+    background-color: #262a2b;
+    flex-direction: column;
+    border-radius: 6px;
+}
+
+@media only screen and (max-width: 800px){
+    #modal>.info_container{
+        width: 100%;
+    }
+}
+
+
+
+.info_container>.info_header{
+	display: flex;
+    justify-content: flex-end;
+    margin: 0.5em 20px 1.5em 2em;
+}
+
+.info_header>h2{
+    flex-grow: 1;
+    color: #ffff;
+    font-size: 2em;
+    font-weight: 400;
+    margin: 0.5em 0 0 0;
+}
+
+.info_header>button{
+    display: flex;
+    align-items: flex-start;
+    color: #ffff;
+    background-color: #262a2b;
+    font-size: 2em;
+}
+
+.info_container>.info{
+    display: flex;
+    flex-direction: column;
+	flex-grow: 1;
+	justify-content: center;
 }
 
 /*

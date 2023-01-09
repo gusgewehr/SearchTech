@@ -15,14 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from contents import views
+from contents import views as contentViews
+from actions import views as actionsViews
+
 #from django.conf.urls.static import static
 #from django.conf import settings
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('<int:num_page>/', views.index, name='index'),
-    path('project/<int:id>/', views.detailed_content, name='detailed_content'),
+    path('', contentViews.index, name='index'),
+    path('<int:num_page>/', contentViews.index, name='index'),
+    path('project/<int:id>/', contentViews.detailed_content, name='detailed_content'),
+    path('actions/fav/change/', actionsViews.fav_change, name='fav_change'),
+    path('actions/like/change/', actionsViews.like_change, name='like_change'),
+    path('actions/share/add/', actionsViews.share, name='share'),
+    path('actions/comment/add/', actionsViews.comment_add, name='comment_add'),
     path("accounts/", include("django.contrib.auth.urls")),
     path('admin/', admin.site.urls),
 ]

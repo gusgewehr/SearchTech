@@ -52,6 +52,12 @@ class Like(models.Model):
         self.modified = timezone.now()
         return super(Like, self).save(*args, **kwargs) 
 
+    class Meta:
+        constraints = [
+            # impede q o mesmo usuario tenha o mesmo conteudo mais que uma vez
+            models.UniqueConstraint(fields=['user', 'content'], name='like_user_content')
+        ]
+
 class Share(models.Model):
     user        = models.ForeignKey(User, on_delete=models.CASCADE)
     content     = models.BigIntegerField()

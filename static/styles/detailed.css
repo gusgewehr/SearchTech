@@ -7,15 +7,53 @@
     height: 75px;    
 }
 
+
+
+
+
+
+.project_title h3 {
+    font-size: 26px;
+    color: #fff;
+    width: 100%;
+    border-radius: 3px;
+    border-top: 3px solid;
+    border-bottom: 3px solid;
+    margin-bottom: 10px;
+    border-image-source: linear-gradient( 90deg, #16d9ac, #178bea);
+    border-image-slice: 20;
+    padding: 15px 50px 15px 50px;
+    text-align: center;
+}
+
+.subtitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.projectStatus{
+    display: flex;
+    flex-direction: row;
+    font-size: 2em;
+    color: #fff;
+}
+
+.lastUpdated {
+    color: #fff;
+}
 .project_title .actions{
     font-size: 2em;
+    flex-grow: 1;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: end;
     gap: 1.5em;    
-    
-    
+}
+
+.actionForm button{
     color: #fff;
 	background-image: linear-gradient(90deg, #16d9ac, #178bea);
     background-color: #f3ec78;
@@ -24,19 +62,6 @@
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
-}
-
-.project_title h3 {
-    font-size: 26px;
-    color: #fff;
-    border-radius: 3px;
-    border-top: 3px solid;
-    border-bottom: 3px solid;
-    margin-bottom: 20px;
-    border-image-source: linear-gradient( 90deg, #16d9ac, #178bea);
-    border-image-slice: 20;
-    padding: 15px 50px 15px 50px;
-    text-align: center;
 }
 
 
@@ -78,17 +103,89 @@
 }
 
 
-.add_comment{
-    height: 100px;
-    width: 100px;
-    font-size: 4em;
-    
+
+
+.comment_section{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
     color: #fff;
-	background-image: linear-gradient(90deg, #16d9ac, #178bea);
-    background-color: #f3ec78;
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    -moz-text-fill-color: transparent;
+    margin-bottom: 60px
 }
+
+.commentForm{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    background-color: #262a2b;
+
+
+    border: double 3px transparent;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px #b4b4b4;
+    border-radius: 16px;
+    border-image-slice: 20;
+    background-image: linear-gradient(#262a2b, #262a2b), linear-gradient( 90deg, #16d9ac, #178bea);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+#comment{
+    display: flex;
+    border-radius: 16px;
+    background-color: #262a2b;
+    flex-grow: 1;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 16px;
+    font-size: 16px;    
+}
+
+.add_comment{
+    font-size: 4em;
+    margin: 0.2em;
+    height: 100%;
+}
+
+.comment_section>h3 {
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    ;
+}
+
+.comment{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 10vh;
+    gap: 0.5em
+}
+
+.comment h3 {
+    text-align: left;
+    font-size: 26px;
+    background-color: #262a2b;
+    padding: 0.5em;
+    
+}
+
+
+.comment p{
+    font-size: 18px; 
+    padding: 1em 1.5em 1em 1.5em;
+}
+
+.comment h6{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    font-size: 12px;
+    border-bottom: #262a2b 3px solid;
+}
+
+

@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import login_required
 from datetime import date
 import requests
 
+from actions.models import Favorite, Like, Comment, Share
+
+
 # Create your views here
 @lru_cache(maxsize=30)
 def get_all_project(date):
@@ -73,13 +76,21 @@ def index(request, num_page = 1):
 
 @login_required()
 def detailed_content(request, id):
-
+    user = request.user
 
     project = get_datailed_project(id, date.today().month)
+
+    
+    favBool = Favorite.objects.filter(user=user, content=id)
+    likeBool = Like.objects.filter(user=user, content=id)
+    comments = Comment.objects.filter(content=id, allowed=True)
 
 
     context = {
         'project': project,
+        'userFav': favBool,
+        'userLike': likeBool,
+        'comments': comments,
         }
 
     return render(
@@ -87,3 +98,5 @@ def detailed_content(request, id):
         'datailed.html',
         context
     )
+
+
