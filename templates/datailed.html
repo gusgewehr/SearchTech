@@ -1,144 +1,143 @@
-{% extends 'header.html' %}
+{% extends 'header.html' %} {% block content %}
 
-{% block content %}
-
-    <div class="project_title"> 
-        <h3>{{project.title}}</h3>
-        <div class="subtitle">
-            {% if project.statusDescription == 'Active' %} 
-                <div class="projectStatus" style="color: #16d9ac">
-                    {{project.statusDescription}}
-                </div>
-            {% else %}
-                <div class="projectStatus" style="color: #3c4344">
-                    {{project.statusDescription}}
-                </div>
-            {% endif %}
-            <div class="lastUpdated">
-                {{project.lastUpdated}}
-            </div>
-            <div class="actions">
-                
-                <form action="/actions/fav/change/" method="post" class="actionForm">
-                {% csrf_token %}
-                <input type='hidden' value="{{project.projectId}}" name="projectId">
-            {% if userFav %}
-                <button name="fav_btn" type="submit" value="remove" class="desfav" >
-                    <i class="fa-solid fa-heart"></i>
-                </button>
-            {% else %}
-                <button name="fav_btn" type="submit" value="add" class="fav" >
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-            {% endif %}
-            </form>
-
-            <form action="/actions/like/change/" method="post"  class="actionForm">
-                {% csrf_token %}
-                <input type='hidden' value="{{project.projectId}}" name="projectId">
-            {% if userLike %}            
-                    <button name="like_btn" type="submit" value="remove" class="like" >
-                        <i class="fa-solid fa-thumbs-up"></i>
-                    </button>
-            {% else %}
-                    <button name="like_btn" type="submit" value="add" class="like" >
-                        <i class="fa-regular fa-thumbs-up"></i>
-                    </button>                
-            {% endif %}
-            </form>
-            <form action="/actions/share/add/" method="post" class="actionForm">
-                {% csrf_token %}
-                <input type='hidden' value="{{project.projectId}}" name="projectId">
-                <button name="share_btn" type="submit" value="add" class="share" >
-                    <i class="fa-solid fa-share"></i>
-                </button>
-            </form>
-            </div>
-        </div>
+<div class="project_title">
+  <h3>{{project.title}}</h3>
+  <div class="subtitle">
+    {% if project.statusDescription == 'Active' %}
+    <div class="projectStatus" style="color: #16d9ac">
+      {{project.statusDescription}}
     </div>
-
-    {% if project.description %}
-    <div class="description">
-        <h3>Description</h3>
-        {{project.description|safe}}
+    {% else %}
+    <div class="projectStatus" style="color: #3c4344">
+      {{project.statusDescription}}
     </div>
     {% endif %}
 
-    {% if project.benefits %}
-    <div class="text">
-        <h3>Benefits</h3>
-        {{project.benefits|safe}}
+    <div class="actions">
+      <form action="/actions/fav/change/" method="post" class="actionForm">
+        {% csrf_token %}
+        <input type="hidden" value="{{project.projectId}}" name="projectId" />
+        {% if userFav %}
+        <button name="fav_btn" type="submit" value="remove" class="desfav">
+          <i class="fa-solid fa-heart"></i>
+        </button>
+        {% else %}
+        <button name="fav_btn" type="submit" value="add" class="fav">
+          <i class="fa-regular fa-heart"></i>
+        </button>
+        {% endif %}
+      </form>
+
+      <form action="/actions/like/change/" method="post" class="actionForm">
+        {% csrf_token %}
+        <input type="hidden" value="{{project.projectId}}" name="projectId" />
+        {% if userLike %}
+        <button name="like_btn" type="submit" value="remove" class="like">
+          <i class="fa-solid fa-thumbs-up"></i>
+        </button>
+        {% else %}
+        <button name="like_btn" type="submit" value="add" class="like">
+          <i class="fa-regular fa-thumbs-up"></i>
+        </button>
+        {% endif %}
+      </form>
+      <form action="/actions/share/add/" method="post" class="actionForm">
+        {% csrf_token %}
+        <input type="hidden" value="{{project.projectId}}" name="projectId" />
+        <button name="share_btn" type="submit" value="add" class="share">
+          <i class="fa-solid fa-share"></i>
+        </button>
+      </form>
     </div>
-    {% endif %}
+  </div>
+</div>
 
-<div class="text">
-    <a href="{{project.website}}">
-        {{project.website}}
-    </a>
-    <lu>
-        <h3>Destination</h3>
-        {% for destination in project.destinations %}
-        <li>
-            {{destination.description}}
-        </li>
-        {% endfor %}
-    </lu>
+<div class="detailsProject">
+  {% if project.description %}
+  <div class="description">
+    <h3>Description</h3>
+    {{project.description|safe}}
+  </div>
+  {% endif %} {% if project.benefits %}
+  <div class="benefits">
+    <h3>Benefits</h3>
+    {{project.benefits|safe}}
+  </div>
+  {% endif %}
+</div>
 
-    <lu>
-        <li>
-            start: {{project.startMonth}}/{{project.startYear}}
-        </li>
-        <li>
-            end: {{project.endMonth}}/{{project.endYear}}
-        </li>
-    </lu>
-    <lu>
-        <h3>Program Managers</h3>
-        {% for person in project.programManagers %}
-        <li>
-            {{person.fullName}}
-        </li>
-        {% endfor %}
-    </lu>
-    <lu>
-        <h3>Project Managers</h3>
-        {% for person in project.projectManagers %}
-        <li>
-            {{person.fullName}}
-        </li>
-        {% endfor %}
-    </lu>
-    <p>
-        last updated: {{project.lastUpdated}}
-    </p>
+<div class="project_website">
+	<h3 class="text_website">Website</h3>
+  <a href="{{project.website}}"> {{project.website}} </a>
+</div>
+
+<div class="project_info">
+	<div class="text">
+		<ul>
+			<h3>Destination</h3>
+			{% for destination in project.destinations %}
+			<li>{{destination.description}}</li>
+			{% endfor %}
+		</ul>
+
+		<ul>
+			<h3>Start</h3>
+			<li>{{project.startMonth}}/{{project.startYear}}</li>
+		</ul>
+
+		<ul>
+			<h3>End</h3>
+			<li>{{project.endMonth}}/{{project.endYear}}</li></li>
+		</ul>
+		
+		<ul>
+			<h3>Last Updated</h3>
+			<li>{{project.lastUpdated}}</li>
+		</ul>
+
+		<ul>
+			<h3>Program Managers</h3>
+			{% for person in project.programManagers %}
+			<li>{{person.fullName}}</li>
+			{% endfor %}
+		</ul>
+
+		<ul>
+			<h3>Project Managers</h3>
+			{% for person in project.projectManagers %}
+			<li>{{person.fullName}}</li>
+			{% endfor %}
+		</ul>
+	</div>
 </div>
 
 <div class="comment_section">
-    <form action="/actions/comment/add/" method="post" class="actionForm commentForm">
-        {% csrf_token %}
-        <input type='hidden' value="{{project.projectId}}" name="projectId">
-        <textarea id="comment" name="comment" rows="8" placeholder="Add a comment"></textarea>
-        <button class="add_comment"><i class="fa-solid fa-comment-medical"></i></button>
-    </form>
-    {% if comments %}
-        {% for  comment in comments %}
-        <div class="comment">
-            <h3>
-                {{ comment.user }}
-            </h3>
-            <p>
-                {{ comment.text }}
-            </p>
-            <h6>
-                {{ comment.created }}
-            </h6>
-        </div>
-        {% endfor %}
-    {% else %}
-    <h3>
-        No comments yet
-    </h3>
-    {% endif %}
+  <form
+    action="/actions/comment/add/"
+    method="post"
+    class="actionForm commentForm"
+  >
+    {% csrf_token %}
+    <input type="hidden" value="{{project.projectId}}" name="projectId" />
+    <textarea
+      id="comment"
+      name="comment"
+      rows="8"
+      placeholder="Add a comment"
+    ></textarea>
+    <button class="add_comment">
+      <i class="fa-solid fa-comment-medical"></i>
+    </button>
+  </form>
+  {% if comments %} {% for comment in comments %}
+  <div class="comment">
+    <h3>{{ comment.user }}</h3>
+    <p>{{ comment.text }}</p>
+    <h6>{{ comment.created }}</h6>
+  </div>
+  {% endfor %} {% else %}
+  <h3>No comments yet</h3>
+  {% endif %}
 </div>
 
 {% endblock %}

@@ -1,50 +1,59 @@
 {% load static %}
 
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="{% static 'styles/reset.css' %}">
-        <link rel="stylesheet" href="{% static 'styles/header.css' %}">
-		<link rel="stylesheet" href="{% static 'styles/index.css' %}">        
-        <link rel="stylesheet" href="{% static 'styles/detailed.css' %}">
-		<script src="https://kit.fontawesome.com/8e543a0707.js" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=63bc2f5a592bb2001af01bb2&product=inline-share-buttons&source=platform" async="async"></script>
-        <script src="/static/scripts/header.js"></script> 
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'styles/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/detailed.css' %}" />
+    <script
+      src="https://kit.fontawesome.com/8e543a0707.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://platform-api.sharethis.com/js/sharethis.js#property=63bc2f5a592bb2001af01bb2&product=inline-share-buttons&source=platform"
+      async="async"
+    ></script>
+    <script src="/static/scripts/header.js"></script>
 
-        {% if showShare %}
-        <script>
-            var modal = document.getElementById("modal");
-            modal.setAttribute("style", "display: flex;");
-        </script>
-        {% endif %}
+    {% if showShare %}
+    <script>
+      var modal = document.getElementById("modal");
+      modal.setAttribute("style", "display: flex;");
+    </script>
+    {% endif %}
+  </head>
+  <body>
+    <header>
+			<a href="/">
+				<h1>SearchTech</h1>
+			</a>
+      {% if user.is_authenticated %}
+				<div class="project_logout">
+					<span>Bem vindo {{request.user}},</span>
+					<a class="btn-logout" href="/logout">Logout</a>
+				</div>
+      {% endif %}
 
-        
+    </header>
 
-    </head>
-	<body>
-        <header>
-            <h1>SearchTech</h1>
-        </header>        
-            <div id="modal" class="modal">
-                <div class="info_container">
-                    <div class="info_header">
-                        <h2>
-                            Share with your friends!
-                        </h2>
-                        <button class="btn_close_modal">
-                            <i class="fa-solid fa-xmark btn_close_modal"></i>
-                        </button>
-                    </div>
-                    <div class="info">                        
-                        <div class="sharethis-inline-share-buttons"></div>
-                    </div>
-                </div>
-            </div>
-        <main>
-            {{showShare}}
-            {% block content %}
-            
-            {% endblock %}
-        </main>
-    </body>
+
+    <div id="modal" class="modal">
+      <div class="info_container">
+        <div class="info_header">
+          <h2>Share with your friends!</h2>
+          <button class="btn_close_modal">
+            <i class="fa-solid fa-xmark btn_close_modal"></i>
+          </button>
+        </div>
+        <div class="info">
+          <div class="sharethis-inline-share-buttons"></div>
+        </div>
+      </div>
+    </div>
+
+    <main>{{showShare}} {% block content %} {% endblock %}</main>
+  </body>
 </html>

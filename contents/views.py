@@ -1,13 +1,14 @@
 from functools import lru_cache
 from math import ceil
 from django.shortcuts import render, redirect
-from django.contrib.auth import logout
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.views import generic
 from datetime import date
 import requests
-
 from actions.models import Favorite, Like, Comment, Share
-
 
 # Create your views here
 @lru_cache(maxsize=30)
@@ -33,6 +34,13 @@ def get_datailed_project(id, month):
     resp_dict = response.json()
     return resp_dict['project']
 
+@lru_cache
+def search_projects(query, date):
+	url = f'https://techport.nasa.gov/api/projects/search?searchQuery={query}'
+	response = requests.get(url)
+	resp_dict = response.json()
+
+	return resp_dict['projects']
 
 def login(request):
     ''' Recebe as solicitações de login, se não tiver autenticado retorna com a tela de login'''
@@ -46,33 +54,35 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-
 def index(request, num_page = 1):
-    
-    response = get_all_project(date.today())
-    total_pages = ceil(len(response)/5)
+	try:
+		query = request.GET['querySearch']
+	except:
+		query = None
 
-    page = response[((num_page*5)-5):(num_page*5)]
+	if query:		
+		response = search_projects(query, date.today())
+	else:
+		response = get_all_project(date.today())
 
-    contents = []
-    for item in page:
-        project = get_specific_project(item['projectId'], date.today().month)
-        contents.append(project[0])
+	total_pages = ceil(len(response)/5)
 
-    context = { 
-            'contents': contents, 
-            'total_pages': total_pages, 
-            'num_page':num_page,
-            'next_page':num_page+1,
-            'prev_page':num_page-1,
-            }
+	page = response[((num_page*5)-5):(num_page*5)]
 
-    return render(
-        request, 
-        'index.html',
-        context 
-        )
+	contents = []
+	for item in page:
+		project = get_specific_project(item['projectId'], date.today().month)
+		contents.append(project[0])
 
+	context = { 
+			'contents': contents, 
+			'total_pages': total_pages, 
+			'num_page':num_page,
+			'next_page':num_page+1,
+			'prev_page':num_page-1,
+	}
+
+	return render(request, 'index.html',context)
 
 @login_required()
 def detailed_content(request, id):
@@ -98,5 +108,16 @@ def detailed_content(request, id):
         'datailed.html',
         context
     )
+
+class register(generic.CreateView):
+	form_class = UserCreationForm
+	template_name ='registration/register.html'	
+
+	def form_valid(self, form):
+		context = self.get_context_data(form=form)
+		context['success'] = True
+		teste = self.request.GET['next']
+		form.save()
+		return redirect(f'/accounts/login/?next={teste}')
 
 

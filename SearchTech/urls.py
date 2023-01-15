@@ -25,13 +25,19 @@ urlpatterns = [
     path('', contentViews.index, name='index'),
     path('<int:num_page>/', contentViews.index, name='index'),
     path('project/<int:id>/', contentViews.detailed_content, name='detailed_content'),
+    path('', contentViews.search_projects, name='search_projects'),
+
     path('actions/fav/change/', actionsViews.fav_change, name='fav_change'),
     path('actions/like/change/', actionsViews.like_change, name='like_change'),
     path('actions/share/add/', actionsViews.share, name='share'),
     path('actions/comment/add/', actionsViews.comment_add, name='comment_add'),
+		
     path("accounts/", include("django.contrib.auth.urls")),
+		path("logout/", contentViews.logout_view, name="logout_view"),
+		path("register/", contentViews.register.as_view(), name="register"),
     path('admin/', admin.site.urls),
 ]
+
 #if settings.DEBUG:
 #    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 #    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

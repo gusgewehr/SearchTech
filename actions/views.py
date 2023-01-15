@@ -23,7 +23,6 @@ def fav_change(request):
     
     return redirect('/project/'+requestContent)
 
-
 @login_required
 def like_change(request):
     if request.method == 'POST':
@@ -41,7 +40,6 @@ def like_change(request):
     
     return redirect('/project/'+requestContent)
 
-
 @login_required
 def share(request):
     if request.method == 'POST':
@@ -54,7 +52,6 @@ def share(request):
         share.save()
     
     return redirect(f'/project/{requestContent}/?showShare=1')
-
 
 @login_required()
 def comment_add(request):

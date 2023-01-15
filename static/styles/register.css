@@ -1,0 +1,98 @@
+.register-dark {
+  height: 100vh;
+  background: #475d62 url(../../assets/img/star-sky.jpg);
+  background-size: cover;
+  position: relative;
+}
+
+.register-dark form {
+  max-width: 455px;
+  width: 90%;
+  background-color: #1e2833;
+  padding: 40px;
+  border-radius: 4px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+.register-dark .illustration {
+  text-align: center;
+  padding: 15px 0 20px;
+  font-size: 100px;
+  color: #2980ef;
+}
+
+.register-dark form input {
+  background: none;
+  border: none;
+  width: 100%;
+  border-bottom: 1px solid #434a52;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+	height: auto!important;
+	padding: 0!important;
+}
+
+.form-control:focus {
+  background: none !important;
+  border: none !important;
+  width: 100% !important;
+  border-bottom: 1px solid #434a52 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: inherit !important;
+}
+
+.register-dark form .btn-primary {
+  background: #214a80;
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+  box-shadow: none;
+  margin-top: 26px;
+  text-shadow: none;
+  outline: none;
+  width: 100%;
+	cursor: pointer;
+}
+
+.register-dark form .btn-primary:hover,
+.register-dark form .btn-primary:active {
+  background: #0062cc;
+  outline: none;
+}
+
+.register-dark form .forgot {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #6f7a85;
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+.register-dark form .forgot:hover,
+.register-dark form .forgot:active {
+  opacity: 1;
+  text-decoration: none;
+	color: #fff;
+}
+
+.register-dark form .btn-primary:active {
+  transform: translateY(1px);
+}
+
+#hint_id_password1, #hint_id_username {
+  display: none;
+}
+
+#div_id_password2.form-group, #div_id_password1.form-group, #div_id_username.form-group {
+	margin-bottom: 0!important;
+}
