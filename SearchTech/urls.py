@@ -21,6 +21,8 @@ from actions import views as actionsViews
 #from django.conf.urls.static import static
 #from django.conf import settings
 
+admin.site.site_header = 'SearchTech Administration Portal'
+
 urlpatterns = [
     path('', contentViews.index, name='index'),
     path('<int:num_page>/', contentViews.index, name='index'),
