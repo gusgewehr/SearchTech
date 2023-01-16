@@ -154,6 +154,7 @@ main {
   position: absolute;
   top: 13%;
   right: 3%;
+  z-index: 1;
 }
 
 .search-project form .btnSearch {
