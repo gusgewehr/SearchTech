@@ -66,8 +66,8 @@ def comment_add(request):
             text = requestComment,
             allowed = True
         )
-        
-        comment.save()
+        if requestComment and requestContent and requestUser:
+            comment.save()
     
     return redirect('/project/'+requestContent)
     
