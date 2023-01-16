@@ -154,7 +154,6 @@ main {
   position: absolute;
   top: 13%;
   right: 3%;
-  z-index: 9;
 }
 
 .search-project form .btnSearch {
@@ -206,7 +205,6 @@ main {
     position: absolute;
     top: 110px;
     right: 6%;
-    z-index: 9;
   }
 
   .search-project form .input-search {
@@ -217,7 +215,7 @@ main {
     border: none;
     color: white;
     font-size: 16px;
-    z-index: 1;
+    z-index: 9;
   }
 }
 
