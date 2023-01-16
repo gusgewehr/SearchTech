@@ -24,7 +24,7 @@
 	padding: 40px 20px 40px;
 	position: relative;
 	vertical-align: top;
-	margin: 10px;
+	margin: 10px 0px 10px 0px;
 	font-family: 'helvetica', san-serif;
 	min-height: 200px;
 	background: #262a2b;
@@ -164,5 +164,30 @@ footer{
 
 	.tilesWrap li h2 {
 		font-size: 36px;
+	}
+
+	.tilesWrap li {
+		display: inline-block;
+		min-width: 200px;
+		width: 100%;
+		padding: 40px 20px 40px;
+		position: relative;
+		vertical-align: top;
+		margin: 10px 0px 10px 0px;
+		font-family: 'helvetica', san-serif;
+		min-height: 150px;
+		background: #262a2b;
+		border: 1px solid #252727;
+		text-align: left;
+	}
+	
+}
+
+
+@media screen and (max-width:900px){
+	.tilesWrap li h3 {
+	    font-size: 20px;
+	    color: #b7b7b7;
+	    margin-bottom: 5px;
 	}
 }

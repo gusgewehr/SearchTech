@@ -7,15 +7,9 @@
     <link rel="stylesheet" href="{% static 'styles/header.css' %}" />
     <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
     <link rel="stylesheet" href="{% static 'styles/detailed.css' %}" />
-    <script
-      src="https://kit.fontawesome.com/8e543a0707.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://platform-api.sharethis.com/js/sharethis.js#property=63bc2f5a592bb2001af01bb2&product=inline-share-buttons&source=platform"
-      async="async"
-    ></script>
+
+    <script src="https://kit.fontawesome.com/8e543a0707.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=63bc2f5a592bb2001af01bb2&product=inline-share-buttons&source=platform" async="async"></script>
     <script src="/static/scripts/header.js"></script>
 
     {% if showShare %}
@@ -24,8 +18,10 @@
       modal.setAttribute("style", "display: flex;");
     </script>
     {% endif %}
+		
   </head>
   <body>
+		
     <header>
 			<a href="/">
 				<h1>SearchTech</h1>

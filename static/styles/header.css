@@ -151,10 +151,9 @@ main {
 .search-project {
   display: flex;
   justify-content: right;
-  margin-right: 30px;
   position: absolute;
   top: 13%;
-  right: 0%;
+  right: 3%;
   z-index: 9;
 }
 
@@ -162,13 +161,14 @@ main {
   background-image: linear-gradient(90deg, #16d9ac, #178bea);
   background-color: #f3ec78;
   background-size: 100%;
-  padding: 10px;
+  padding: 11px;
   color: white;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   margin: 0;
   font-size: 16px;
   border: none;
+  width: 60px;
 }
 
 .search-project form .btnSearch:focus,
@@ -180,7 +180,7 @@ main {
 
 .search-project form .input-search {
   padding: 10px;
-  width: 500px;
+  width: 40vw;
   margin: 0;
   background-color: #262a2b;
   border: none;
@@ -192,12 +192,33 @@ main {
 .search-project form .input-search:focus-visible {
   outline: 0;
   padding: 10px;
-  width: 500px;
   margin: 0;
   background-color: #262a2b;
   border: none;
   color: white;
   font-size: 16px;
+}
+
+@media screen and (max-width: 900px) {
+  .search-project {
+    display: flex;
+    justify-content: right;
+    position: absolute;
+    top: 110px;
+    right: 6%;
+    z-index: 9;
+  }
+
+  .search-project form .input-search {
+    padding: 10px;
+    width: 70vw;
+    margin: 0;
+    background-color: #262a2b;
+    border: none;
+    color: white;
+    font-size: 16px;
+    z-index: 1;
+  }
 }
 
 /*
