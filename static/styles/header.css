@@ -33,7 +33,7 @@ header::before {
   left: 0;
   bottom: 6em;
   width: 100%;
-  height: calc(var(--heading-height) + 10em);
+  height: calc(var(--heading-height));
   z-index: -1;
   transform: skewY(-3.5deg);
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
