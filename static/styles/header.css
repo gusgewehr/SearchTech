@@ -149,12 +149,12 @@ main {
 /* index css */
 
 .search-project {
+  width: 100%;
   display: flex;
-  justify-content: right;
-  position: absolute;
+  align-items: flex-end;
+  justify-content: end;
   top: 13%;
   right: 3%;
-  z-index: 1;
 }
 
 .search-project form .btnSearch {

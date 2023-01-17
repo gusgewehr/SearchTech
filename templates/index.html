@@ -7,36 +7,44 @@
 			<button class="btnSearch"><i class="fa fa-search"></i></button>
 		</form>
 	</div>
-
+	
 	<ul class="tilesWrap">
 		{% if request.GET.querySearch %}
 			<div class="querySearch">
 				Searching for keyword "{{request.GET.querySearch}}":
 			</div>
 		{% endif %}
-		{% for ctd in contents %}
-			<a href="/project/{{ctd.projectId}}">	
-				<li>
-					<h2>{{ctd.projectId}}</h2>
-					<h3>{{ctd.title}}</h3>
-					<button>Read more</button>
-				</li>
-			</a>
-				
-		{% endfor %}
+		{% if contents %}
+			{% for ctd in contents %}
+				<a href="/project/{{ctd.projectId}}">	
+					<li>
+						<h2>{{ctd.projectId}}</h2>
+						<h3>{{ctd.title}}</h3>
+						<button>Read more</button>
+					</li>
+				</a>
+					
+			{% endfor %}
+		{% else %}
+			<h1>
+				No project to display
+			</1>
+		{% endif %}
 	</ul>
 
 	<footer>
-		{% if num_page != 1 %}
-		<a href="/{{prev_page}}?querySearch={{request.GET.querySearch}}">			
-			<i class="fa-solid fa-circle-arrow-left navigation-arrows"></i>
-		</a>
-		{% endif %}
-		Página {{num_page}} de {{total_pages}}
-		{% if num_page != total_pages %}
-		<a href="/{{next_page}}?querySearch={{request.GET.querySearch}}">
-			<i class="fa-solid fa-circle-arrow-right navigation-arrows"></i>
-		</a>
+		{% if total_pages != 0 %}
+			{% if num_page != 1 %}
+			<a href="/{{prev_page}}?querySearch={{request.GET.querySearch}}">			
+				<i class="fa-solid fa-circle-arrow-left navigation-arrows"></i>
+			</a>
+			{% endif %}
+			Página {{num_page}} de {{total_pages}}
+			{% if num_page != total_pages %}
+			<a href="/{{next_page}}?querySearch={{request.GET.querySearch}}">
+				<i class="fa-solid fa-circle-arrow-right navigation-arrows"></i>
+			</a>
+			{% endif %}
 		{% endif %}
 	</footer>
 

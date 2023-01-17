@@ -112,6 +112,7 @@
 </div>
 
 <div class="comment_section">
+  
   <form
     action="/actions/comment/add/"
     method="post"
@@ -119,15 +120,20 @@
   >
     {% csrf_token %}
     <input type="hidden" value="{{project.projectId}}" name="projectId" />
-    <textarea
-      id="comment"
-      name="comment"
-      rows="8"
-      placeholder="Add a comment"
-    ></textarea>
-    <button class="add_comment">
-      <i class="fa-solid fa-comment-medical"></i>
-    </button>
+    {% if request.GET.error_message == 'obligatory_text' %}
+      <p class="error_message">You need to inform a text for your comment</p>
+    {% endif %}
+    <div class="comment_action">    
+      <textarea
+        id="comment"
+        name="comment"
+        rows="8"
+        placeholder="Add a comment"
+      ></textarea>
+      <button class="add_comment">
+        <i class="fa-solid fa-comment-medical"></i>
+      </button>
+    </div>
   </form>
   {% if comments %} {% for comment in comments %}
   <div class="comment">
