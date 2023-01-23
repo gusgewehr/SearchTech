@@ -97,6 +97,7 @@ ul li {
 .description p {
   font-size: 16px;
   text-align: justify;
+  line-height: 1.5;
 }
 
 .benefits {
@@ -125,6 +126,7 @@ ul li {
 .benefits p {
   font-size: 16px;
   text-align: justify;
+  line-height: 1.5;
 }
 
 .text {
@@ -166,7 +168,7 @@ ul li {
 .commentForm {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
   background-color: #262a2b;
@@ -180,6 +182,27 @@ ul li {
     linear-gradient(90deg, #16d9ac, #178bea);
   background-origin: border-box;
   background-clip: content-box, border-box;
+}
+
+.error_message{
+  margin-top: 2px;
+  padding-left: 20px;
+  font-size: 16px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 20px;
+  border: 1px solid #f5c6cb;
+}
+
+.comment_action{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
 }
 
 #comment {

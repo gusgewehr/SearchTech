@@ -17,6 +17,11 @@
 	font-weight: 400;
 }
 
+.tilesWrap>h1{
+	font-size: 36px;
+	color: white;
+}
+
 .tilesWrap li {
 	display: inline-block;
 	min-width: 200px;

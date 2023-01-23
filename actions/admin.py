@@ -10,6 +10,7 @@ class CommentAdmin(admin.ModelAdmin):
 		'text',
 		'created'
     ]
+    readonly_fields=('text',)
 
 admin.site.register(Comment, CommentAdmin)
 class FavoriteAdmin(admin.ModelAdmin):
