@@ -31,7 +31,7 @@
           </button>
         </div>
 
-        <a href="/accounts/login" class="forgot">Login</a>
+        <a href="/accounts/login/?next={{ request.GET.next }}" class="forgot">Login</a>
       </form>
       {% endblock %}
     </div>
