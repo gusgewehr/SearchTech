@@ -9,6 +9,7 @@ from django.views import generic
 from datetime import date
 import requests
 from actions.models import Favorite, Like, Comment, Share
+from .models import Drive
 
 # Create your views here
 @lru_cache(maxsize=30)
@@ -120,4 +121,12 @@ class register(generic.CreateView):
 		form.save()
 		return redirect(f'/accounts/login/?next={teste}')
 
+@login_required
+def drive(request):
+    files = Drive.objects.all()
 
+    context = {
+        'files': files,
+    }
+
+    return render(request, 'drive.html',context)

@@ -28,7 +28,7 @@ urlpatterns = [
     path('<int:num_page>/', contentViews.index, name='index'),
     path('project/<int:id>/', contentViews.detailed_content, name='detailed_content'),
     path('', contentViews.search_projects, name='search_projects'),
-
+    path('drive/', contentViews.drive, name='drive'),
     path('actions/fav/change/', actionsViews.fav_change, name='fav_change'),
     path('actions/like/change/', actionsViews.like_change, name='like_change'),
     path('actions/share/add/', actionsViews.share, name='share'),
