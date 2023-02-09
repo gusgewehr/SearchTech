@@ -10,6 +10,8 @@ from datetime import date
 import requests
 from actions.models import Favorite, Like, Comment, Share
 from .models import Drive
+from django.http import HttpResponse
+import os
 
 # Create your views here
 @lru_cache(maxsize=30)
@@ -130,3 +132,26 @@ def drive(request):
     }
 
     return render(request, 'drive.html',context)
+
+
+@login_required
+def drive_display(request,id):
+    file = Drive.objects.get(id=id)
+
+    response = HttpResponse()
+    caminho, file_name = os.path.split(file.file.path)
+
+    if file_name.endswith('.mp3'):
+        content_type = 'audio/mp3'
+    elif file_name.endswith('.png'):
+        content_type = 'image/png'
+    elif file_name.endswith('.mp4'):
+        content_type = 'video/mp4'
+
+    response = HttpResponse(file.file, headers={
+        'Content-Type': content_type,
+        'Content-Disposition': f'attatchment; filename="{file_name}"'
+    })
+
+    return response 
+    
